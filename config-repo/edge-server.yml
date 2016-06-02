@@ -1,6 +1,9 @@
 server:
   port: 8765
   
+custom:
+  tryout: tryout
+  
 eureka:
   client:
     service-url:
