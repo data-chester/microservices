@@ -1,0 +1,31 @@
+info:
+  description: This is microservice discovery server
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+  server:
+    registry-sync-retries: 2
+    
+---
+ spring:
+  profiles: peer1
+ eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://peer2:8762/eureka/
+  instance:
+    app-group-name: d1
+          
+---
+ spring:
+  profiles: peer2
+ eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://peer1:8761/eureka/
+  instance:
+    app-group-name: d1
